@@ -11,10 +11,11 @@ function Footer() {
     const formData = new FormData(e.target);
     const name = formData.get('name');
     const email = formData.get('email');
+    const phone = formData.get('phone');
     const message = formData.get('message');
     
     const subject = `Contact Form - ${name}`;
-    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0AMessage: ${message}`;
     
     window.location.href = `mailto:lisandrusfernandus@hotmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
     
@@ -33,6 +34,7 @@ function Footer() {
           <form onSubmit={sendEmail}>
             <input type="text" name="name" id="name" placeholder='Your Name'  className='footer-input' required/>
             <input type="email" name='email' placeholder='Your Email' className='footer-input' required/>
+            <input type="tel" name='phone' placeholder='Your Phone Number' className='footer-input' required/>
             <textarea name="message" id="message" cols="30" rows="10" placeholder='Your Message' className='footer-input' required></textarea>
             <button type='submit' className='btn-btn'> Send Message</button>
           </form>
