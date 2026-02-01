@@ -33,6 +33,9 @@
   .footer-subscription-heading {
     margin-bottom: 24px;
     font-size: 24px;
+    text-align: center;
+    width: 100%;
+    display: block;
   }
   
   .footer-subscription-text {
@@ -97,11 +100,17 @@
   form{
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 1rem;
     margin-bottom: 2rem;
     margin-left: 6rem;
     max-width: 500px;
     width: 100%;
+=======
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    margin-left: 4rem;
+>>>>>>> ae21f9f0f0e281b5579bf50c76e1470238e3a9ac
 }
 
 input, textarea {
