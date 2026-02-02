@@ -23,21 +23,13 @@ jobs:
         run: npm install  # Or yarn install
 
       - name: Build for environment
-        id: build
         run: |
           if [ "${{ github.ref }}" == "refs/heads/dev" ]; then
-            echo "REACT_APP_API_URL=http://dev-api.deep-vision.com" > .env.development
-            npm run build
-            echo "Deploying to dev"
-            echo "deploy_repo=lisandrofernando/deep-visiondev-dev" >> $GITHUB_OUTPUT
+            echo "REACT_APP_API_URL=http://dev-api.deep-vision.com" > .env
           else
-            echo "REACT_APP_API_URL=https://prod-api.deep-vision.com" > .env.production
-            npm run build
-            echo "Deploying to prod"
-            echo "deploy_repo=lisandrofernando/deep-visiondev-prod" >> $GITHUB_OUTPUT
+            echo "REACT_APP_API_URL=https://prod-api.deep-vision.com" > .env
           fi
-        env:
-          NODE_ENV: ${{ github.ref == 'refs/heads/dev' && 'development' || 'production' }}
+          npm run build
 
       - name: Add 404.html for SPA routing
         run: cp build/index.html build/404.html
@@ -45,8 +37,7 @@ jobs:
       - name: Deploy to GitHub Pages repo
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
-          repository: ${{ steps.build.outputs.deploy_repo }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-          folder: build  # Your build output folder (default for React)
+          folder: build
           clean: true
