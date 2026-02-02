@@ -39,6 +39,9 @@ jobs:
         env:
           NODE_ENV: ${{ github.ref == 'refs/heads/dev' && 'development' || 'production' }}
 
+      - name: Add 404.html for SPA routing
+        run: cp build/index.html build/404.html
+
       - name: Deploy to GitHub Pages repo
         uses: JamesIves/github-pages-deploy-action@v4
         with:
